@@ -51,4 +51,8 @@
     </int:service-activator>
 
     <int:channel id="failedPaymentChannel" />
+
+    <int:service-activator
+        input-channel="failedPaymentsChannel"
+        ref="failedPaymentHandler" />
 </beans>
