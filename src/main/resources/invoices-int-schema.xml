@@ -33,5 +33,5 @@
     <int:channel id = "foreignTransactions" />
     <int:channel id = "localTransactions" />
 
-    
+
 </beans>
