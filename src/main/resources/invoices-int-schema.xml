@@ -33,5 +33,16 @@
     <int:channel id = "foreignTransactions" />
     <int:channel id = "localTransactions" />
 
+    <int:transformer
+        input-channel="localTransactions"
+        output-channel="bankingChannel"
+        ref="localPaymentCreator" />
+    <int:transformer
+        input-channel="foreignTransactions"
+        output-channel="bankingChannel"
+        ref="foreignPaymentCreator" />
 
+    <int:channel id="bankingChannel">
+        <int:queue capacity="1000"/>
+    </int:channel>
 </beans>
