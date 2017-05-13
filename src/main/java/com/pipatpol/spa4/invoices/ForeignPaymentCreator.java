@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ForeignPaymentCreator implements PaymentCreator {
 
-    public static final String CURRENT_IBAN_ACC = "current-iban-acc";
+    private static final String CURRENT_IBAN_ACC = "current-iban-acc";
+
     @Override
     @Transformer
     public Payment createPayment(Invoice invoice) throws PaymentException {

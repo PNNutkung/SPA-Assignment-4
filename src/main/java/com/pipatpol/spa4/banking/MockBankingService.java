@@ -17,6 +17,6 @@ public class MockBankingService implements BankingService {
         if (rand.nextDouble() > 0.9) {
             throw new PaymentException("Banking services are offline, try again later!");
         }
-        System.out.print(String.format("Processing payment %s", payment));
+        System.out.println(String.format("Processing payment %s", payment));
     }
 }

@@ -16,7 +16,7 @@ public class Invoice {
 		this.dollars = dollars;
 	}
 	
-	public boolean isForiegn() {
+	public boolean isForeign() {
 		return null != iban && !iban.isEmpty();
 	}
 

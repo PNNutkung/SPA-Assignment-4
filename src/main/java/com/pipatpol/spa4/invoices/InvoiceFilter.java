@@ -13,7 +13,7 @@ public class InvoiceFilter {
     @Filter
     public boolean accept(Invoice invoice) {
         boolean lowEnough = invoice.getDollars().intValue() < LOW_ENOUGH_THRESHOLD;
-        System.out.println(String.format("Amount of $%s %s be automatically processed by system.", invoice.getDollars(), lowEnough ? "can":"can not"));
+        System.out.println(String.format("Amount of $%s %s be automatically processed by system.", invoice.getDollars(), lowEnough ? " can" : " can not"));
         return lowEnough;
     }
 }

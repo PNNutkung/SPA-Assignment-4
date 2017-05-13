@@ -1,11 +1,14 @@
 package com.pipatpol.spa4.invoices;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Random;
 
 /**
  * Created by PNNutkung on 2017-05-13.
  */
+@Component
 public class InvoiceGenerator {
 
     private Random rand = new Random();
