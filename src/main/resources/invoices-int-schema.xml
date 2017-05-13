@@ -45,4 +45,10 @@
     <int:channel id="bankingChannel">
         <int:queue capacity="1000"/>
     </int:channel>
+
+    <int:service-activator input-channel="bankingChannel" ref="paymentProcessor">
+        <int:poller fixed-rate="500" error-channel="failedPaymentChannel" />
+    </int:service-activator>
+
+    <int:channel id="failedPaymentChannel" />
 </beans>
