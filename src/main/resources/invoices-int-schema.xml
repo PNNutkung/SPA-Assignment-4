@@ -4,14 +4,34 @@
        xmlns:int="http://www.springframework.org/schema/integration"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
     <int:logging-channel-adapter id="logger" level="DEBUG" />
+
     <int:wire-tap channel="logger" />
+
     <int:channel id="newInvoicesChannel" />
+
     <int:gateway id="invoicesGateway"
                  service-interface="com.pipatpol.spa4.invoices.InvoiceCollectorGateway">
         <int:method name="collectInvoices" request-channel="newInvoicesChannel" />
     </int:gateway>
+
     <int:splitter
         input-channel="newInvoicesChannel"
         output-channel="singleInvoicesChannel" />
     <int:channel id="singleInvoicesChannel" />
+
+    <int:filter
+        input-channel="singleInvoicesChannel"
+        output-channel="filteredInvoicesChannel"
+        ref="invoiceFilter" />
+    <int:channel id="filteredInvoicesChannel" />
+
+    <int:recipient-list-router input-channel="filteredInvoicesChannel">
+        <int:recipient channel = "foreignTransactions" selector-expression="payload.foreign" />
+        <int:recipient channel = "localTransactions" selector-expression="!payload.foreign" />
+    </int:recipient-list-router>
+
+    <int:channel id = "foreignTransactions" />
+    <int:channel id = "localTransactions" />
+
+    
 </beans>
